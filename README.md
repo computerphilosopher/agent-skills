@@ -66,6 +66,8 @@ Then you can review and activate it manually:
 /goal @goals/<goal-name>.md
 ```
 
+Claude also has a Goal-like feature, so this workflow may be adaptable there, but it has not been tested with Claude yet.
+
 ## Repository Layout
 
 ```text
