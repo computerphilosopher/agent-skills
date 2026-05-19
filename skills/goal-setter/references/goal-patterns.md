@@ -62,6 +62,8 @@ I understand the Goal as: <outcome>. Success is proven by <evidence>. Codex must
 
 Save Goal specs at `project-root/goals/{goal-name}.md`. Use the project Git root when available; otherwise use the current working directory or ask the user which root should own the Goal.
 
+A Goal file is not active Goal state. It is a reviewable activation artifact; the Goal becomes active in the current thread only when the user runs `/goal @goals/<goal-name>.md`.
+
 Use this structure:
 
 ```markdown
@@ -70,6 +72,8 @@ Use this structure:
 Slug: `<goal-name>`
 Status: Draft
 Activation: `/goal @goals/<goal-name>.md`
+
+This file is not an active Goal. It becomes active thread-scoped Goal state only after the activation command is run.
 
 ## Goal Text
 

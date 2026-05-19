@@ -13,6 +13,8 @@ Default to interviewing before drafting or saving a Goal. Small mismatches can w
 
 Do not activate Goals directly by default. Save the agreed Goal as a markdown file under `project-root/goals/{goal-name}.md` so the user can review it, preserve prompt history, and invoke it later with `/goal @goals/{goal-name}.md`.
 
+A saved Goal file is not an active Goal. It is a reviewable activation artifact; the Goal becomes active thread-scoped state only after the user runs `/goal @goals/{goal-name}.md`.
+
 ## Decision Rules
 
 Recommend a Goal when the task has:
@@ -54,7 +56,8 @@ Use file-based Goals as the default handoff.
 3. Derive `{goal-name}` from the intended outcome using lowercase kebab-case.
 4. Write the Goal spec to `goals/{goal-name}.md`.
 5. Include the exact activation command in the file and final response: `/goal @goals/{goal-name}.md`.
-6. If the file already exists, update it intentionally rather than creating a duplicate, unless the new request is clearly a different Goal.
+6. State that the file itself does not activate the Goal; it only becomes active after the user invokes it with `/goal @...`.
+7. If the file already exists, update it intentionally rather than creating a duplicate, unless the new request is clearly a different Goal.
 
 The markdown file should preserve the prompt contract, not just the final `/goal` sentence. Include:
 

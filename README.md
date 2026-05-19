@@ -20,6 +20,8 @@ You can review that file, keep it in version control, and start the Goal later w
 /goal @goals/<goal-name>.md
 ```
 
+The markdown file is not an active Goal by itself. It is a reviewable activation artifact; the Goal becomes active only after you run `/goal @goals/<goal-name>.md` in a Codex thread.
+
 ## Installation
 
 Install the skill with Codex's skill installer from this repository:
