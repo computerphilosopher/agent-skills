@@ -1,0 +1,4 @@
+interface:
+  display_name: "Goal Setter"
+  short_description: "Save evidence-backed Goal specs"
+  default_prompt: "Use $goal-setter to turn this task into a strong evidence-backed Goal file."
