@@ -1,0 +1,3 @@
+interface:
+  display_name: "가짜 통과 탐지기"
+  short_description: "명세를 어기는 구현도 통과시키는 테스트와 잘못된 기대값을 찾아내는 리뷰"
