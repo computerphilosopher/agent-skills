@@ -1,8 +1,33 @@
-# Goal Setter
+# Agent Skills
+
+Reusable skills for coding agents.
+
+| Skill | Purpose |
+| --- | --- |
+| [False Green Detector](skills/false-green-detector/SKILL.md) | Find tests that pass even when behavior violates the specification. |
+| [Goal Setter](skills/goal-setter/SKILL.md) | Turn ambiguous multi-step work into a reviewed, evidence-backed Goal file. |
+
+## False Green Detector
+
+False Green Detector reviews tests against specifications. It checks where expected values come from, which outcomes assertions actually verify, and whether incorrect implementations can still pass. It distinguishes test gaps from implementation defects and unclear requirements.
+
+Install from this repository:
+
+```text
+Use $skill-installer to install https://github.com/computerphilosopher/agent-skills/tree/main/skills/false-green-detector
+```
+
+Use it to review existing tests:
+
+```text
+Use $false-green-detector to review existing tests against the specification and find incorrect behavior they would fail to detect.
+```
+
+## Goal Setter
 
 Goal Setter is a Codex skill for turning ambiguous multi-step work into a reviewed, evidence-backed Goal file before any Goal is activated.
 
-## Why This Exists
+### Why This Exists
 
 Codex Goals are powerful because they let a thread keep working toward a persistent objective across turns. That same persistence can waste a lot of time and tokens if the Goal is even slightly misaligned with the user's intent.
 
@@ -22,7 +47,7 @@ You can review that file, keep it in version control, and start the Goal later w
 
 The markdown file is not an active Goal by itself. It is a reviewable activation artifact; the Goal becomes active only after you run `/goal @goals/<goal-name>.md` in a Codex thread.
 
-## Installation
+### Installation
 
 Install the skill with Codex's skill installer from this repository:
 
@@ -38,7 +63,7 @@ ${CODEX_HOME:-$HOME/.codex}/skills/goal-setter
 
 Restart Codex after installation so the new skill is discovered.
 
-## Usage
+### Usage
 
 Invoke the skill when you want to turn a task into a durable Codex Goal:
 
@@ -70,10 +95,14 @@ Then you can review and activate it manually:
 
 Claude also has a Goal-like feature, so this workflow may be adaptable there, but it has not been tested with Claude yet.
 
-## Repository Layout
+### Repository Layout
 
 ```text
 skills/
+├── false-green-detector/
+│   ├── SKILL.md
+│   └── agents/
+│       └── openai.yaml
 └── goal-setter/
     ├── SKILL.md
     ├── agents/
