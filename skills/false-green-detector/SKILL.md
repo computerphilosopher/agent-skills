@@ -1,52 +1,52 @@
 ---
 name: false-green-detector
-description: Review existing tests against specifications, checking how expected results are derived and whether assertions detect incorrect behavior. Use for specification-based test reviews or requests like "테스트가 명세를 검증하는지 봐줘" or "구현에 맞춰 작성된 테스트인지 리뷰해줘".
+description: Review existing tests against specifications, checking how expected results are derived and whether assertions detect incorrect behavior. Use for specification-based test reviews or requests to find tests that pass despite bugs or merely mirror the implementation.
 ---
 
-# 가짜 통과 탐지기
+# False Green Detector
 
-테스트의 기대 결과가 명세에서 도출되었는지, 실제로 명세를 어기는 동작을 잡을 수 있는지 검토한다. 테스트와 구현이 서로 일치하더라도 둘 다 명세와 다를 수 있다는 점을 중심에 둔다.
+Review whether expected results come from the specification and whether tests catch behavior that violates it. A test and its implementation can agree while both contradict the specification.
 
-## 1. 명세에서 기대 동작 도출하기
+## 1. Derive expected behavior from the specification
 
-현재 적용되는 요구사항과 관련 API·기능 명세를 읽고, 검토할 동작을 **사전 조건 → 입력 또는 행동 → 기대 결과**로 정리한다. 기능에 따라 반환값뿐 아니라 저장된 값, 상태 변화, 외부로 전달하는 요청도 기대 결과에 포함한다.
+Read the applicable requirements and API or feature specifications. Describe each behavior as **preconditions → input or action → expected outcome**. Depending on the feature, outcomes include return values, persisted data, state changes, and requests sent to external systems.
 
-예를 들어 명세가 “재고가 충분하면 주문을 접수하고 수량만큼 차감하며, 부족하면 주문을 거절하고 재고를 유지한다”라면, 재고 3개에서 2개를 주문했을 때 주문이 접수되고 재고가 1개 남아야 한다. 재고 3개에서 4개를 주문하면 거절되고 재고는 3개로 유지되어야 한다. 이처럼 정상 처리와 실패 조건을 먼저 정리한 뒤 테스트와 대조한다. 아래 예시는 확인 방법을 설명하기 위한 것이며, 실제 기대 동작은 검토 대상의 명세에서 도출한다.
+For example, suppose the specification says: “Accept an order and deduct its quantity when stock is sufficient; otherwise reject it and leave stock unchanged.” With 3 items in stock, ordering 2 should succeed and leave 1. Ordering 4 should fail and leave 3. Establish these success and failure expectations before comparing them with tests. The examples below illustrate review techniques; derive actual expectations from the specification under review.
 
-## 2. 테스트가 무엇을 검증하는지 대조하기
+## 2. Compare expectations with what tests actually verify
 
-명세에서 정리한 기대 결과마다 이를 확인하는 구문(assertion)을 찾아 테스트의 준비 데이터와 실행 경로를 읽는다. 예를 들어 “주소 변경 → 주문 생성 → 결제”를 실행한 테스트가 결제 성공만 확인한다면, 주문에 새 주소가 반영됐는지는 별도로 확인해야 한다. 여러 동작을 실행하는 테스트에서는 각 결과를 어디서 확인하는지 대조한다.
+For each expected outcome, find the assertion that checks it and read the test setup and execution path. A test that runs “change address → create order → pay” but only checks payment success still needs an assertion that the order uses the new address. In tests with several actions, identify where each outcome is checked.
 
-- **기대값의 근거:** 명세로 계산하거나 정한 값인가? 예를 들어 주문 금액을 계산하는 기능이 내부에서 할인 함수를 사용한다고 하자. 테스트에서도 그 할인 함수를 호출해 기대값을 만들면, 함수가 10% 할인을 20%로 잘못 계산해도 실제 결과와 기대값이 모두 8,000원이 되어 통과한다. 명세가 “10,000원에 10% 할인”이라면 기대값을 9,000원으로 정해 주문 계산 결과와 비교해야 이 오류를 잡을 수 있다.
+- **Source of expected values:** Is the expected value calculated or chosen from the specification? Suppose order calculation uses a discount function, and the test calls that same function to calculate its expected total. If the function applies 20% instead of 10%, both values become 8,000 and the test passes. If the specification says “10% off 10,000,” compare the actual total with the independently derived value of 9,000 to catch this error.
 
-- **준비 조건:** 테스트가 확인하려는 상황을 제대로 만들었는가? 예를 들어 “만료된 쿠폰은 거절한다”는 테스트에서 쿠폰 번호까지 존재하지 않는다면, 만료 검사가 없어도 “없는 쿠폰”이라는 이유로 실패한다. 실제로 존재하고 다른 사용 조건도 충족하는 쿠폰을 준비한 뒤 유효기간만 만료시키고, 명세가 정한 만료 처리 결과를 확인한다.
+- **Preconditions:** Does the setup create the intended situation? A test for rejecting expired coupons might use a coupon code that does not exist. It would then reject the coupon even if expiration checking were removed. Use an existing coupon that meets all other conditions, make only its validity period expire, and check the specified expiration outcome.
 
-- **결과 확인:** 요구된 작업이 실제로 이루어졌는가? 예를 들어 주소 변경 테스트가 “성공” 응답만 확인하면 저장을 생략한 구현도 통과할 수 있다. 기존 주소 A를 새 주소 B로 바꾸고, 저장된 주소를 다시 읽어 B인지 확인한다. 처음부터 주소를 B로 준비하면 아무 작업도 하지 않은 구현과 정상 구현을 구별하기 어렵다.
+- **Observable results:** Did the required operation actually happen? An address-change test that only checks a success response can pass even if persistence is skipped. Change address A to B, read the stored address again, and check that it is B. Starting with B already stored makes it difficult to distinguish a successful update from doing nothing.
 
-- **이전 상태와 연속 동작:** 앞선 작업이 남긴 상태를 다음 작업이 올바르게 바꾸는가? 예를 들어 새 배송지를 등록하면 기존 기본 배송지 설정을 해제해야 하는데, 배송지가 없는 고객으로만 검사하면 해제 코드를 생략해도 통과한다. 기본 배송지 A가 있는 고객에게 B를 추가하고, B가 기본이 되며 A의 기본 설정은 해제되는지 확인한다. 초기 상태에서 한 번 실행하는 테스트와 함께, 명세가 정한 변경·재시도·만료 후의 흐름을 살핀다.
+- **Prior state and sequences of actions:** Does the next action correctly update state left by an earlier one? Suppose adding a new shipping address must clear the previous default address flag. Testing only customers with no addresses would miss code that fails to clear that flag. Start with default address A, add B, and check that B becomes the default and A loses that status. Alongside tests starting from an empty state, examine the specified flows for changes, retries, and actions after expiration.
 
-- **입력 구분:** 입력에 따라 달라져야 하는 결과를 구별하는가? 예를 들어 고객 A와 B의 배송지가 같은 테스트 데이터라면, B의 주문에 A의 배송지를 잘못 사용해도 통과할 수 있다. 서로 다른 배송지를 준비하고 주문한 고객의 주소가 사용되는지 확인한다. 수량 제한처럼 경계가 있는 규칙도 확인한다. 명세가 “최대 5개”라면 4개·5개는 허용되고 6개는 거절되는지 살핀다.
+- **Distinguishing inputs:** Do tests distinguish outcomes that should depend on the input? If customers A and B have the same shipping address in the fixtures, using A's address for B's order may still pass. Give them different addresses and check that the ordering customer's address is used. Check boundaries too: if the specification allows at most 5 items, verify that 4 and 5 are accepted and 6 is rejected.
 
-- **대체 객체의 범위:** mock이나 stub, 즉 테스트용 대체 객체가 검증할 동작까지 대신하고 있지는 않은가? 예를 들어 “재고가 부족하면 주문을 거절한다”를 검증하면서 주문 판단 함수 자체를 항상 “재고 부족”을 반환하도록 바꾸면 실제 재고 비교 로직은 실행되지 않는다. 재고를 읽는 부분에서 수량 1을 제공하고, 실제 주문 판단 로직에 수량 2를 전달해 거절하는지 확인한다. 상위 호출부의 오류 전달만 검증하는 테스트라면, 재고 판단 자체는 별도 테스트가 확인하는지 살핀다.
+- **Scope of test doubles:** Does a mock or stub replace the very behavior being tested? A test for rejecting orders with insufficient stock does not exercise stock comparison if it replaces the order decision function with a stub that always returns “insufficient stock.” Instead, have the stock-reading dependency return 1 and ask the real order logic to order 2, then check rejection. If the test only covers how a caller propagates an error, check whether another test covers the stock decision itself.
 
-실패 처리에서 명세가 요구한 뒷정리도 확인한다. 예를 들어 파일 다운로드 취소가 진행 중인 통신을 중단해야 한다면, 호출자가 “취소됨”을 받았는지만 검사해서는 통신이 계속되는 오류를 놓친다. 통신 경계의 대체 객체가 중단 요청을 받았는지 또는 실제 전송이 멈췄는지도 확인한다. 테스트 종료 시 실행하는 정리 코드가 대신 통신을 닫기 전에 이 결과를 확인해야 한다.
+Check cleanup required by the specification on failure paths. If canceling a download must stop an active transfer, checking that the caller receives “canceled” can miss a transfer that keeps running. Also check that the test double at the transport boundary received a cancellation request, or that the actual transfer stopped. Make this observation before test teardown closes the connection on the implementation's behalf.
 
-테스트가 확인하는 세부 사항은 명세가 요구하는 수준과 맞춘다. 예를 들어 명세가 최종 정렬 결과만 정했다면, 내부 비교 함수를 정확히 세 번 호출해야 한다는 검사는 정렬 알고리즘을 바꾸었을 때 불필요하게 실패할 수 있다. 이 경우에는 결과의 순서를 확인한다. 반대로 명세가 “결제 요청은 한 번만 전송한다”고 정했다면 전송 횟수도 검증 대상이다.
+Match assertions to the level of detail required by the specification. If only the sorted result is specified, requiring exactly three calls to an internal comparator can break a valid change of sorting algorithm. Check the resulting order instead. If the specification explicitly requires a payment request to be sent exactly once, the number of sends is an appropriate assertion.
 
-## 3. 잘못된 동작을 잡을 수 있는지 확인하기
+## 3. Check whether incorrect behavior would be caught
 
-테스트와 구현·호출부를 함께 읽으며 **“이 명세를 어기는 구현도 이 테스트를 통과할 수 있는가?”**를 확인한다. 예를 들어 재고 부족 사례만 검사하면 모든 주문을 무조건 거절하는 구현도 통과한다. 재고가 충분할 때는 주문이 성공하고 재고가 줄어드는 테스트가 있는지 함께 확인한다. 다른 테스트에서 이 동작을 검증하고 있다면 그 범위까지 고려한다.
+Read the tests, implementation, and callers together and ask: **“Could an implementation that violates this specification still pass these tests?”** For example, tests covering only insufficient stock would also pass an implementation that rejects every order. Look for a test showing that sufficient stock allows the order and reduces inventory. Account for coverage provided by other tests.
 
-판단이 어려우면 관련 테스트의 현재 실행 결과를 확인한 뒤, 임시 복사본에서 해당 동작을 일부러 잘못 바꿔 본다. 예를 들어 재고 차감만 생략했는데도 테스트가 통과하면 차감 여부를 놓치는 검사다. “남은 재고는 1개여야 하는데 3개다”라는 비교에서 실패하면 이 오류를 잡은 것이다. 컴파일 오류나 DB 연결 실패로 중단됐다면 재고 차감을 검증했는지는 아직 알 수 없다.
+When the answer is unclear, run the relevant tests to establish a baseline, then deliberately break the behavior in a temporary copy. If tests still pass after stock deduction is removed, they miss that effect. A failure saying “expected 1 remaining item, but found 3” demonstrates detection. A compilation error or database connection failure does not establish whether stock deduction was checked.
 
-## 4. 테스트 문제와 구현 문제를 구분해 보고하기
+## 4. Distinguish test gaps from implementation defects
 
-- **테스트 문제:** 예를 들어 명세는 주문 후 재고 차감을 요구하지만 테스트는 성공 응답만 확인한다. 구현이 현재 올바르더라도 차감 코드가 빠지는 오류를 놓칠 수 있다.
+- **Test gap:** The specification requires stock deduction after an order, but the test only checks a success response. Even if the implementation is currently correct, the test can miss a regression that removes the deduction.
 
-- **구현 문제:** 예를 들어 명세의 할인율은 10%인데 구현은 20%를 적용한다. 테스트까지 20% 할인된 금액을 기대하고 있다면, 구현의 계산 오류와 테스트 기대값의 오류를 함께 지적한다.
+- **Implementation defect:** The specification requires a 10% discount, but the code applies 20%. If the test also expects the 20% result, report both the calculation defect and the incorrect test expectation.
 
-- **명세 확인 필요:** 예를 들어 쿠폰과 회원 할인을 함께 적용할 수 있는지 명세에 설명이 없다면 기대 금액을 확정할 수 없다. 어떤 정책을 정해야 테스트의 기대값을 결정할 수 있는지 밝힌다.
+- **Specification needs clarification:** The specification does not say whether a coupon and a membership discount can be combined, so the expected total cannot be determined. Explain which policy must be resolved to establish an expectation.
 
-각 지적에는 명세 근거, 해당 코드 위치, 문제가 드러나는 입력과 결과, 수정 방향을 제시한다. 중요도순으로 정리하고 실제로 실행한 검사와 확인하지 못한 범위를 밝힌다.
+For each finding, provide the specification evidence, code location, input and outcome that expose the problem, and a suggested correction. Order findings by impact and state which checks were actually run and what remains unverified.
 
-수정도 요청받았다면 명세에 맞게 기대값과 준비 데이터를 고친다. 앞의 할인 오류라면 먼저 기대값을 9,000원으로 고쳐 현재 구현의 8,000원과 비교할 때 실패하는지 확인한다. 이후 구현을 10% 할인으로 수정하고 해당 테스트와 관련 테스트를 다시 실행한다.
+If fixes are also requested, correct expected values and fixtures using the specification. For the discount example, first change the expectation to 9,000 and confirm that the implementation's 8,000 result fails. Then fix the implementation to apply 10% and rerun the affected and related tests.

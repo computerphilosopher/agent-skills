@@ -9,7 +9,7 @@ Reusable skills for coding agents.
 
 ## False Green Detector
 
-False Green Detector reviews tests against specifications. It checks where expected values come from, which outcomes assertions actually verify, and whether incorrect implementations can still pass. It distinguishes test gaps from implementation defects and unclear requirements. The skill instructions are written in Korean.
+False Green Detector reviews tests against specifications. It checks where expected values come from, which outcomes assertions actually verify, and whether incorrect implementations can still pass. It distinguishes test gaps from implementation defects and unclear requirements.
 
 Install from this repository:
 
