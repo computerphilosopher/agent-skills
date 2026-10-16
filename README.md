@@ -4,8 +4,25 @@ Reusable skills for coding agents.
 
 | Skill | Purpose |
 | --- | --- |
+| [Document Review](skills/document-review/SKILL.md) | Review document readability, structure, tables, terminology, and repetition. |
 | [False Green Detector](skills/false-green-detector/SKILL.md) | Find tests that pass even when behavior violates the specification. |
 | [Goal Setter](skills/goal-setter/SKILL.md) | Turn ambiguous multi-step work into a reviewed, evidence-backed Goal file. |
+
+## Document Review
+
+Document Review checks how easily a reader can follow a document. It covers wording, section hierarchy, table organization, repetition, terminology, and procedural flow. Reviews stay focused on readability and preserve the document's meaning when edits are requested.
+
+Install from this repository:
+
+```text
+Use $skill-installer to install https://github.com/computerphilosopher/agent-skills/tree/main/skills/document-review
+```
+
+Use it to review a document:
+
+```text
+Use $document-review to review this document for readability, overlapping sections, and tables that should be split.
+```
 
 ## False Green Detector
 
@@ -99,6 +116,10 @@ Claude also has a Goal-like feature, so this workflow may be adaptable there, bu
 
 ```text
 skills/
+├── document-review/
+│   ├── SKILL.md
+│   └── agents/
+│       └── openai.yaml
 ├── false-green-detector/
 │   ├── SKILL.md
 │   └── agents/
