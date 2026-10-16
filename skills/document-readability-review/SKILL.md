@@ -1,5 +1,5 @@
 ---
-name: document-review
+name: document-readability-review
 description: Review document readability, including wording, structure, headings, tables, repetition, terminology, and explanations of procedures. Use when a user asks to review or improve how easily a document can be understood.
 ---
 
