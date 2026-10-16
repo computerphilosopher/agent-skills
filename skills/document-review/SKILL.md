@@ -1,6 +1,6 @@
 ---
 name: document-review
-description: Review document readability, including wording, structure, headings, tables, repetition, terminology, and explanations of procedures. Use when a user asks to review or improve how easily a document can be understood. This skill does not audit requirements, approval status, design correctness, or specification completeness.
+description: Review document readability, including wording, structure, headings, tables, repetition, terminology, and explanations of procedures. Use when a user asks to review or improve how easily a document can be understood.
 ---
 
 # 문서 가독성 리뷰
@@ -11,13 +11,13 @@ description: Review document readability, including wording, structure, headings
 
 대상 독자와 문서의 목적을 파악하고 본문·제목·표·예시를 함께 읽는다. 연결된 정의는 용어와 설명을 이해하는 데 필요한 범위에서 확인한다. 대상 문서에 적용되는 작성 규칙을 존중한다.
 
-판단 기준은 독자가 어디에서 무엇을 이해하기 어려운지다. 문서에 설명된 정책이나 설계 자체를 평가하거나, 가독성 개선을 이유로 새로운 기능·절차·필수 문서 항목을 요구하지 않는다. 원문 인용과 원래 자료의 제목은 보존한다.
+문서에 정해진 의미·정책·설계를 유지하며, 독자의 이해를 방해하는 표현과 구성을 검토한다. 원문 인용과 원래 자료의 제목은 보존한다.
 
 ## 문장
 
 - 누가 무엇을 하는지, 어떤 조건에서 어떤 결과가 나오는지 직접 설명한다. 추상어·명사 나열·생략된 주어 때문에 독자가 동작을 추측해야 하는 부분을 찾는다.
 - 한 문장에 독립적인 주장이나 여러 조건이 얽혀 있으면 의미 단위로 나눈다. 조건과 결과, 원인과 효과가 가까이 있도록 배치한다.
-- 불필요한 부정 설명, 쓰지 않는 대안과의 비교, 이름을 그대로 풀어 쓴 설명을 줄인다. 필요한 제약은 적용 조건과 효과가 드러나게 유지한다.
+- ‘~가 아니다’, ‘~는 하지 않는다’처럼 쓰지 않는 대안과 구별하거나 당연한 제외를 덧붙일 뿐인 문장은 삭제한다. 구체적인 오해를 막거나 필요한 제약을 전달하는 부정문은 적용 조건과 효과가 드러나게 유지한다.
 - 간결하게 줄이더라도 의미·단위·대상·예외가 사라지지 않게 한다. 길이 자체보다 한 번 읽고 이해할 수 있는지를 판단한다.
 
 ## 구성
@@ -42,7 +42,8 @@ description: Review document readability, including wording, structure, headings
 
 대상 문서와 직접 연결된 설명에서 같은 내용의 반복이 읽는 흐름을 끊거나 불필요하게 분량을 늘리는지 확인한다.
 
-- 같은 내용을 표현만 바꿔 되풀이한다면 상세 설명을 한곳에 모으고 필요한 요약과 연결을 둔다. 여러 항목에 공통으로 적용되는 설명도 독자가 적용 범위를 알 수 있게 정리한다.
+- 제목·상태 표시·범위 안내·앞선 정의에서 이미 전달한 사실을 본문에서 다시 설명하는지 확인한다. 새로운 조건·이유·판단 정보를 더하지 않는 부연과, 이름을 그대로 풀어 쓴 설명은 덜어낸다.
+- 여러 위치에서 같은 상세 설명을 되풀이한다면 한곳에 모으고 필요한 요약과 연결을 둔다. 여러 항목에 공통으로 적용되는 설명도 독자가 적용 범위를 알 수 있게 정리한다.
 - 이해를 돕는 요약, 비교에 필요한 반복값, 독립적으로 읽는 구간에 필요한 설명은 유지한다. 반복 여부만으로 삭제를 판단하지 않는다.
 - 정리할 때 한쪽에만 있던 이유·제약·예외를 보존한다. 연결된 위치에서 실제 설명을 찾을 수 있는지 확인한다.
 
