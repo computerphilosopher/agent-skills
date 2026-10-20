@@ -6,6 +6,7 @@ Reusable skills for coding agents.
 | --- | --- |
 | [Document Readability Review](skills/document-readability-review/SKILL.md) | Review document readability, structure, tables, terminology, and repetition. |
 | [False Green Detector](skills/false-green-detector/SKILL.md) | Find tests that pass even when behavior violates the specification. |
+| [Session Handoff](skills/session-handoff/SKILL.md) | Write concise next-session handoffs focused on unresolved work and current state. |
 | [Goal Setter](skills/goal-setter/SKILL.md) | Turn ambiguous multi-step work into a reviewed, evidence-backed Goal file. |
 
 ## Document Readability Review
@@ -38,6 +39,22 @@ Use it to review existing tests:
 
 ```text
 Use $false-green-detector to review existing tests against the specification and find incorrect behavior they would fail to detect.
+```
+
+## Session Handoff
+
+Session Handoff prepares a short continuation note containing unresolved decisions, unfinished work, and verified Git state. It refers to repository instructions instead of repeating them and omits completed work already available in files or commits. Output stays in chat unless file storage is requested.
+
+Install from this repository:
+
+```text
+Use $skill-installer to install https://github.com/computerphilosopher/agent-skills/tree/main/skills/session-handoff
+```
+
+Use it to prepare a handoff:
+
+```text
+Use $session-handoff to write a concise handoff for continuing this task in another session.
 ```
 
 ## Goal Setter
@@ -124,10 +141,12 @@ skills/
 │   ├── SKILL.md
 │   └── agents/
 │       └── openai.yaml
-└── goal-setter/
-    ├── SKILL.md
-    ├── agents/
-    │   └── openai.yaml
-    └── references/
-        └── goal-patterns.md
+├── goal-setter/
+│   ├── SKILL.md
+│   ├── agents/
+│   │   └── openai.yaml
+│   └── references/
+│       └── goal-patterns.md
+└── session-handoff/
+    └── SKILL.md
 ```
