@@ -1,3 +1,3 @@
 interface:
   display_name: "문서 가독성 리뷰"
-  short_description: "문장과 구조, 표, 중복, 용어와 처리 흐름의 가독성을 검토합니다"
+  short_description: "문서 구성과 설명의 충실도, 표와 절차의 가독성을 검토합니다"

@@ -4,14 +4,15 @@ Reusable skills for coding agents.
 
 | Skill | Purpose |
 | --- | --- |
-| [Document Readability Review](skills/document-readability-review/SKILL.md) | Review document readability, structure, tables, terminology, and repetition. |
+| [Document Readability Review](skills/document-readability-review/SKILL.md) | Review document organization, explanation coverage, tables, terminology consistency, and procedural flow. |
+| [Sentence Expression Review](skills/sentence-expression-review/SKILL.md) | Review sentence clarity, awkward noun lists, semantic repetition, and unnecessary explanatory asides. |
 | [False Green Detector](skills/false-green-detector/SKILL.md) | Find tests that pass even when behavior violates the specification. |
 | [Session Handoff](skills/session-handoff/SKILL.md) | Write concise next-session handoffs focused on unresolved work and current state. |
 | [Goal Setter](skills/goal-setter/SKILL.md) | Turn ambiguous multi-step work into a reviewed, evidence-backed Goal file. |
 
 ## Document Readability Review
 
-Document Readability Review checks how easily a reader can follow a document. It covers wording, section hierarchy, table organization, repetition, terminology, and procedural flow. Reviews stay focused on readability and preserve the document's meaning when edits are requested.
+Document Readability Review checks whether readers can find the explanations they need and follow the document. It covers section hierarchy, explanation coverage and placement, table organization, terminology consistency, and procedural flow. Sentence Expression Review handles wording and unnecessary explanatory asides.
 
 Install from this repository:
 
@@ -24,6 +25,24 @@ Use it to review a document:
 ```text
 Use $document-readability-review to review this document for readability, overlapping sections, and tables that should be split.
 ```
+
+## Sentence Expression Review
+
+Sentence Expression Review checks how clearly sentences convey their meaning. It examines relationships hidden by noun lists, ambiguous wording, repeated information, and unnecessary explanations of unused alternatives. It preserves the original meaning when edits are requested.
+
+Install from this repository:
+
+```text
+Use $skill-installer to install https://github.com/computerphilosopher/agent-skills/tree/main/skills/sentence-expression-review
+```
+
+Use it to review wording:
+
+```text
+Use $sentence-expression-review to review the wording in this document.
+```
+
+The [original document review skill](skills/sentence-expression-review/tests/fixtures/document-readability-original.md) is preserved unchanged as a test fixture for independent reviews.
 
 ## False Green Detector
 
@@ -147,6 +166,13 @@ skills/
 │   │   └── openai.yaml
 │   └── references/
 │       └── goal-patterns.md
+├── sentence-expression-review/
+│   ├── SKILL.md
+│   ├── agents/
+│   │   └── openai.yaml
+│   └── tests/
+│       └── fixtures/
+│           └── document-readability-original.md
 └── session-handoff/
     └── SKILL.md
 ```

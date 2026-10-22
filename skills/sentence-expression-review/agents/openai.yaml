@@ -1,0 +1,3 @@
+interface:
+  display_name: "문장 표현 리뷰"
+  short_description: "어색한 명사 나열과 중복 설명을 찾아 문장의 뜻을 명확하게 다듬습니다"
