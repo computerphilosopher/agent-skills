@@ -9,6 +9,7 @@ Reusable skills for coding agents.
 | [False Green Detector](skills/false-green-detector/SKILL.md) | Find tests that pass even when behavior violates the specification. |
 | [Session Handoff](skills/session-handoff/SKILL.md) | Write concise next-session handoffs focused on unresolved work and current state. |
 | [Goal Setter](skills/goal-setter/SKILL.md) | Turn ambiguous multi-step work into a reviewed, evidence-backed Goal file. |
+| [UI Review](skills/ui-review/SKILL.md) | Find unnecessary UI text and useless buttons. |
 
 ## Document Readability Review
 
@@ -74,6 +75,20 @@ Use it to prepare a handoff:
 
 ```text
 Use $session-handoff to write a concise handoff for continuing this task in another session.
+```
+
+## UI Review
+
+Install from this repository:
+
+```text
+Use $skill-installer to install https://github.com/computerphilosopher/agent-skills/tree/main/skills/ui-review
+```
+
+Use it to review a screen:
+
+```text
+Use $ui-review to find unnecessary text and useless buttons in this screen.
 ```
 
 ## Goal Setter
@@ -173,6 +188,10 @@ skills/
 │   └── tests/
 │       └── fixtures/
 │           └── document-readability-original.md
-└── session-handoff/
-    └── SKILL.md
+├── session-handoff/
+│   └── SKILL.md
+└── ui-review/
+    ├── SKILL.md
+    └── agents/
+        └── openai.yaml
 ```
