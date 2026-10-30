@@ -13,7 +13,7 @@ Reusable skills for coding agents.
 
 ## Document Readability Review
 
-Document Readability Review checks whether readers can find the explanations they need and follow the document. It covers section hierarchy, explanation coverage and placement, table organization, terminology consistency, and procedural flow. Sentence Expression Review handles wording and unnecessary explanatory asides.
+Document Readability Review checks whether readers can find the explanations they need and follow the document. It covers section hierarchy, explanation coverage and placement, table organization, terminology consistency, and procedural flow. It also checks repetition, unnecessary explanatory asides, and ambiguous wording that affect comprehension or decisions.
 
 Install from this repository:
 
