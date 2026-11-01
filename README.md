@@ -7,7 +7,7 @@ Reusable skills for coding agents.
 | [Document Readability Review](skills/document-readability-review/SKILL.md) | Review document organization, explanation coverage, tables, terminology consistency, and procedural flow. |
 | [Sentence Expression Review](skills/sentence-expression-review/SKILL.md) | Review sentence clarity, awkward noun lists, semantic repetition, and unnecessary explanatory asides. |
 | [False Green Detector](skills/false-green-detector/SKILL.md) | Find tests that pass even when behavior violates the specification. |
-| [Session Handoff](skills/session-handoff/SKILL.md) | Write concise next-session handoffs focused on unresolved work and current state. |
+| [Session Handoff](skills/session-handoff/SKILL.md) | Prepare concise handoffs or transfer a task to a new Codex chat, with verified intake before requested archiving. |
 | [Goal Setter](skills/goal-setter/SKILL.md) | Turn ambiguous multi-step work into a reviewed, evidence-backed Goal file. |
 | [UI Review](skills/ui-review/SKILL.md) | Find unnecessary UI text and useless buttons. |
 
@@ -63,7 +63,7 @@ Use $false-green-detector to review existing tests against the specification and
 
 ## Session Handoff
 
-Session Handoff prepares a short continuation note containing unresolved decisions, unfinished work, and verified Git state. It refers to repository instructions instead of repeating them and omits completed work already available in files or commits. Output stays in chat unless file storage is requested.
+Session Handoff prepares a short continuation note containing unresolved decisions, unfinished work, and verified Git state. It refers to repository instructions instead of repeating them and omits completed work already available in files or commits. A prompt-only request stays in chat unless file storage is requested. When asked to transfer the task, it creates a new Codex chat, verifies the workspace and handoff materials, and archives the original chat only if requested and intake succeeds.
 
 Install from this repository:
 
@@ -75,6 +75,12 @@ Use it to prepare a handoff:
 
 ```text
 Use $session-handoff to write a concise handoff for continuing this task in another session.
+```
+
+Use it to transfer the task and archive this chat after intake:
+
+```text
+Use $session-handoff to create a new chat, hand over this task, verify intake, and then archive this chat.
 ```
 
 ## UI Review
