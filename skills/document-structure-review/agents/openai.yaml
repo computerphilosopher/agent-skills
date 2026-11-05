@@ -1,3 +1,3 @@
 interface:
   display_name: "문서 구성 리뷰"
-  short_description: "필요한 설명의 누락, 장절의 위계, 표의 배치와 절차 연결을 검토합니다"
+  short_description: "빠진 설명을 보완하고 장절·표·용어·절차의 구성을 다듬습니다"

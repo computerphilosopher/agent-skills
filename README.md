@@ -4,10 +4,10 @@ Reusable skills for coding agents.
 
 | Skill | Purpose |
 | --- | --- |
-| [문장강화](skills/munjang-ganghwa/SKILL.md) | Review or revise documents through content pruning, structure review, and sentence refinement. |
+| [문장강화](skills/munjang-ganghwa/SKILL.md) | Revise documents through content pruning, structure review, and sentence refinement. |
 | [Document Thanos](skills/document-thanos/SKILL.md) | Delete unnecessary document content and consolidate redundant explanations while preserving needed information. |
-| [Document Structure Review](skills/document-structure-review/SKILL.md) | Review document organization, explanation coverage, tables, terminology consistency, and procedural flow. |
-| [Sentence Expression Review](skills/sentence-expression-review/SKILL.md) | Review sentence clarity, awkward noun lists, unclear references, and repetitive phrasing. |
+| [Document Structure Review](skills/document-structure-review/SKILL.md) | Improve document organization, explanation coverage, tables, terminology consistency, and procedural flow. |
+| [Sentence Expression Review](skills/sentence-expression-review/SKILL.md) | Refine sentence wording, awkward noun lists, and unclear references. |
 | [False Green Detector](skills/false-green-detector/SKILL.md) | Find tests that pass even when behavior violates the specification. |
 | [Session Handoff](skills/session-handoff/SKILL.md) | Transfer a task to a new Codex chat and separate Git worktree, then archive the original chat after verified intake. |
 | [Goal Setter](skills/goal-setter/SKILL.md) | Turn ambiguous multi-step work into a reviewed, evidence-backed Goal file. |
@@ -15,7 +15,7 @@ Reusable skills for coding agents.
 
 ## 문장강화 (Munjang Ganghwa)
 
-문장강화 is a comprehensive document review and revision workflow, named as an homage to Yi Tae-jun’s *Munjang Ganghwa*. It applies Document Thanos, Document Structure Review, and Sentence Expression Review in that order. Review is the default; `fix` or an explicit request to edit applies each stage to the previous stage’s revised document. Questions requiring a new policy or design decision remain for the user.
+문장강화 is a comprehensive document revision workflow, named as an homage to Yi Tae-jun’s *Munjang Ganghwa*. It applies Document Thanos, Document Structure Review, and Sentence Expression Review in that order. Revision is the default; each stage edits the previous stage’s revised document. Use `review` or explicitly request a review without edits to receive findings only. The final report summarizes what changed and why. Questions requiring a new policy or design decision remain for the user.
 
 Install the orchestrator and its three supporting skills together:
 
@@ -27,21 +27,21 @@ Use $skill-installer to install these paths from computerphilosopher/agent-skill
 - skills/sentence-expression-review
 ```
 
-Review a document:
+Revise a document (default):
 
 ```text
 $munjang-ganghwa path/to/document.md
 ```
 
-Apply revisions:
+Review without editing:
 
 ```text
-$munjang-ganghwa fix path/to/document.md
+$munjang-ganghwa review path/to/document.md
 ```
 
 ## Document Thanos
 
-Document Thanos removes unnecessary sentences, paragraphs, tables, examples, and sections. It checks what information readers would lose if each explanation were removed, consolidates duplicate definitions, and preserves necessary conditions, exceptions, background, and source material. It edits the requested document by default; a review-only request returns deletion candidates without changing files. It has no deletion quota.
+Document Thanos removes unnecessary sentences, paragraphs, tables, examples, and sections. It checks what information readers would lose if each explanation were removed, consolidates duplicate definitions, and preserves necessary conditions, exceptions, background, and source material. Editing is the default; an explicit review-only request returns deletion candidates without changing files. It has no deletion quota.
 
 Use Document Thanos for document pruning, Document Structure Review for organization and explanation coverage, and Sentence Expression Review for sentence clarity.
 
@@ -59,7 +59,7 @@ Use $document-thanos to remove unnecessary content from this document while pres
 
 ## Document Structure Review
 
-Document Structure Review checks whether the required definitions, conditions, relationships, and procedures are explained and connected. It covers explanation completeness, section hierarchy, information placement, table organization, and term definitions.
+Document Structure Review checks whether the required definitions, conditions, relationships, and procedures are explained and connected. It covers explanation completeness, section hierarchy, information placement, table organization, and term definitions. It applies supported improvements by default; an explicit review-only request returns findings without changing files.
 
 Install from this repository:
 
@@ -67,15 +67,15 @@ Install from this repository:
 Use $skill-installer to install https://github.com/computerphilosopher/agent-skills/tree/main/skills/document-structure-review
 ```
 
-Use it to review a document:
+Use it to improve a document:
 
 ```text
-Use $document-structure-review to review this document for explanation coverage, section hierarchy, and table organization.
+Use $document-structure-review to improve this document's explanation coverage, section hierarchy, and table organization.
 ```
 
 ## Sentence Expression Review
 
-Sentence Expression Review checks how clearly sentences convey their meaning. It examines relationships hidden by noun lists, ambiguous wording, unclear references, and repetitive phrasing. It preserves the original meaning when edits are requested.
+Sentence Expression Review clarifies relationships hidden by noun lists, ambiguous wording, and unclear references. It edits by default while preserving the original meaning; an explicit review-only request returns findings without changing files.
 
 Install from this repository:
 
@@ -83,10 +83,10 @@ Install from this repository:
 Use $skill-installer to install https://github.com/computerphilosopher/agent-skills/tree/main/skills/sentence-expression-review
 ```
 
-Use it to review wording:
+Use it to refine wording:
 
 ```text
-Use $sentence-expression-review to review the wording in this document.
+Use $sentence-expression-review to refine the wording in this document.
 ```
 
 The [original document review skill](skills/sentence-expression-review/tests/fixtures/document-readability-original.md) is preserved unchanged as a test fixture for independent reviews.
