@@ -1,6 +1,6 @@
 ---
 name: sentence-expression-review
-description: Review sentence clarity, stacked noun phrases, awkward noun lists, semantic repetition, and unnecessary explanatory asides while preserving meaning. Use when a user asks to review or refine wording, remove redundant prose, or clarify hard-to-follow sentences.
+description: Use when a user asks to review or refine sentence wording, clarify hard-to-follow sentences, or reduce awkward noun lists, stacked noun phrases, unclear references, and repetitive phrasing.
 ---
 
 # 문장 표현 리뷰
@@ -53,19 +53,9 @@ description: Review sentence clarity, stacked noun phrases, awkward noun lists, 
 
 서술어만 ‘정의한다’나 ‘적용한다’로 바꿨더라도 관계가 여전히 불분명하면 수정이 필요하다. 짧은 참조만으로 의미가 충분한 문장은 유지한다.
 
-### 설명의 기여도
+### 반복된 표현
 
-내용이 정확하더라도 현재 문단의 목적에 필요한 설명인지 확인한다. 문장을 빼면 독자가 이해하거나 판단하거나 실행하는 데 필요한 무엇이 빠지는지 살핀다. 제목이나 앞선 정의를 되풀이하거나 이름을 그대로 풀어 쓰는 등 새 정보를 주지 않는 부연은 삭제 대상으로 본다.
-
-서로 다른 질문에 답하는 내용이 섞여 있으면 적절한 위치로 나눈다. 함께 읽어야 뜻을 이해할 수 있는 설명이 흩어져 있으면 모아서 정리한다.
-
-여러 조건에 같은 동작을 반복하면 적용 범위를 명확히 하면서 공통 설명으로 묶는다. 표현이 달라도 같은 사실을 전달하면 중복 후보로 본다. 긍정문 뒤에서 같은 뜻을 부정문으로 설명하거나, 본문을 괄호와 주의 문구에서 다시 말하는 경우를 확인한다. 반복을 유지하려면 뒤의 설명에서 새로 알게 되는 내용이나, 해당 위치에서 설명이 필요한 독자의 이용 상황을 확인한다. 요약과 예시, 비교에 필요한 반복값, 독립적으로 읽는 구간의 설명도 이 기준으로 판단한다. “단계별로 필요하다”, “오해를 막는다”는 설명만으로 유지 여부를 결정하지 않는다.
-
-### 대안 해명
-
-선택하지 않은 구현, 저장하지 않을 값, 표시하지 않을 상태를 열거할 뿐인 설명을 찾는다. 생략했을 때 가능한 구체적인 오해와 영향을 확인하고, 현재 동작을 이해하는 데 도움이 없는 설명은 삭제 대상으로 본다. 실제 제약을 전달하는 부정문은 적용 조건과 효과를 보존한다.
-
-A에서 B로 바꾸기로 했다면 현재 설명을 “B로 한다”로 고친다. “B로 한다. A는 하지 않는다”처럼 이전 선택을 부연으로 남기지 않는다. 관련 본문과 표, 예시에도 같은 결정을 반영하고 보존이 필요한 변경 경위는 이력에 둔다.
+표현이 달라도 같은 사실을 거듭 전달하면 중복을 줄인다. 여러 조건에 같은 동작을 반복하면 적용 범위를 유지하며 공통 설명으로 묶는다. 요약·예시·비교값과 독립적으로 읽는 구간에 필요한 반복은 보존한다.
 
 ## 결과 보고
 
