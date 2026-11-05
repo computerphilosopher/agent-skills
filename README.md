@@ -7,7 +7,7 @@ Reusable skills for coding agents.
 | [Document Readability Review](skills/document-readability-review/SKILL.md) | Review document organization, explanation coverage, tables, terminology consistency, and procedural flow. |
 | [Sentence Expression Review](skills/sentence-expression-review/SKILL.md) | Review sentence clarity, awkward noun lists, semantic repetition, and unnecessary explanatory asides. |
 | [False Green Detector](skills/false-green-detector/SKILL.md) | Find tests that pass even when behavior violates the specification. |
-| [Session Handoff](skills/session-handoff/SKILL.md) | Prepare concise handoffs or transfer a task to a new Codex chat, with verified intake before requested archiving. |
+| [Session Handoff](skills/session-handoff/SKILL.md) | Transfer a task to a new Codex chat and separate Git worktree, then archive the original chat after verified intake. |
 | [Goal Setter](skills/goal-setter/SKILL.md) | Turn ambiguous multi-step work into a reviewed, evidence-backed Goal file. |
 | [UI Review](skills/ui-review/SKILL.md) | Find unnecessary UI text and useless buttons. |
 
@@ -63,7 +63,7 @@ Use $false-green-detector to review existing tests against the specification and
 
 ## Session Handoff
 
-Session Handoff prepares a short continuation note containing unresolved decisions, unfinished work, and verified Git state. It refers to repository instructions instead of repeating them and omits completed work already available in files or commits. A prompt-only request stays in chat unless file storage is requested. When asked to transfer the task, it creates a new Codex chat, verifies the workspace and handoff materials, and archives the original chat only if requested and intake succeeds.
+Invoking Session Handoff creates a new Codex chat, prepares a separate worktree for repository tasks, transfers the task context and materials, verifies intake, and then archives the original chat. The handoff includes unresolved decisions, unfinished work, and verified Git state, referring to repository instructions instead of repeating them. Only an explicit request for a handoff prompt alone produces text without creating a chat or worktree or archiving the original chat. Requests to explain, review, or edit the skill do not execute a handoff.
 
 Install from this repository:
 
@@ -71,16 +71,16 @@ Install from this repository:
 Use $skill-installer to install https://github.com/computerphilosopher/agent-skills/tree/main/skills/session-handoff
 ```
 
-Use it to prepare a handoff:
+Use it to transfer the task and archive this chat after verified intake:
 
 ```text
-Use $session-handoff to write a concise handoff for continuing this task in another session.
+$session-handoff
 ```
 
-Use it to transfer the task and archive this chat after intake:
+Request only a handoff prompt:
 
 ```text
-Use $session-handoff to create a new chat, hand over this task, verify intake, and then archive this chat.
+Use $session-handoff to write only a handoff prompt for continuing this task in another session.
 ```
 
 ## UI Review
