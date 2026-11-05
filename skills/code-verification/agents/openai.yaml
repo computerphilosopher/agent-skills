@@ -1,0 +1,3 @@
+interface:
+  display_name: "코드검증"
+  short_description: "명세·구현·테스트를 검토하고 웹 동작과 실행 결과를 검증합니다"

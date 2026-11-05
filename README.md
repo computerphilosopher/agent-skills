@@ -4,6 +4,7 @@ Reusable skills for coding agents.
 
 | Skill | Purpose |
 | --- | --- |
+| [코드검증](skills/code-verification/SKILL.md) | Verify code changes against specifications, review implementation and tests, and run applicable browser and repository checks. |
 | [문장강화](skills/munjang-ganghwa/SKILL.md) | Revise documents through content pruning, structure review, and sentence refinement. |
 | [Document Thanos](skills/document-thanos/SKILL.md) | Delete unnecessary document content and consolidate redundant explanations while preserving needed information. |
 | [Document Structure Review](skills/document-structure-review/SKILL.md) | Improve document organization, explanation coverage, tables, terminology consistency, and procedural flow. |
@@ -12,6 +13,27 @@ Reusable skills for coding agents.
 | [Session Handoff](skills/session-handoff/SKILL.md) | Transfer a task to a new Codex chat and separate Git worktree, then archive the original chat after verified intake. |
 | [Goal Setter](skills/goal-setter/SKILL.md) | Turn ambiguous multi-step work into a reviewed, evidence-backed Goal file. |
 | [UI Review](skills/ui-review/SKILL.md) | Find unnecessary UI text and useless buttons. |
+
+## 코드검증 (Code Verification)
+
+코드검증 connects five skills in order: `spec-to-code-compliance`, `ponytail-review`, `false-green-detector`, `webapp-testing`, and `verification-before-completion`. It compares the code with its specification, reviews the implementation and tests, checks applicable local web interactions, then runs repository checks against the final state. Each stage reads the installed skill's instructions. Stages outside the requested scope are reported as not applicable; applicable stages that cannot run are reported as unreviewed.
+
+The specification stage uses the [Trail of Bits plugin](https://github.com/trailofbits/skills/tree/main/plugins/spec-to-code-compliance), including its workflow and checker agent. When the host lacks the workflow runner, the orchestrator maps those roles to independent subagents and preserves the original evidence and refutation requirements. The browser stage uses [Anthropic's webapp-testing skill](https://github.com/anthropics/skills/tree/main/skills/webapp-testing) and requires Python Playwright and a browser in the test environment.
+
+Verification is the default and preserves source, tests, and configuration. Use `fix` to correct confirmed problems within the requested scope and rerun the affected reviews and checks. The final report separates passing tests from satisfied requirements and includes unresolved issues and verification limits.
+
+Verify the current implementation changes, or name specific files, commits, or a branch:
+
+```text
+$code-verification
+$code-verification review path/to/code
+```
+
+Fix confirmed problems and verify again:
+
+```text
+$code-verification fix path/to/code
+```
 
 ## 문장강화 (Munjang Ganghwa)
 
@@ -219,6 +241,10 @@ Claude also has a Goal-like feature, so this workflow may be adaptable there, bu
 
 ```text
 skills/
+├── code-verification/
+│   ├── SKILL.md
+│   └── agents/
+│       └── openai.yaml
 ├── munjang-ganghwa/
 │   ├── SKILL.md
 │   └── agents/
