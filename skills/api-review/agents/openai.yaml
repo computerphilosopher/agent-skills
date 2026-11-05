@@ -1,0 +1,4 @@
+interface:
+  display_name: "API 리뷰"
+  short_description: "실제 호출 용도와 명세의 완결성을 기준으로 API를 검토합니다"
+  default_prompt: "$api-review 스킬로 이 API의 요청·응답과 실제 호출 용도를 검토해줘."
