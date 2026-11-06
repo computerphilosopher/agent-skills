@@ -22,6 +22,8 @@ The specification stage uses the [Trail of Bits plugin](https://github.com/trail
 
 Verification is the default and preserves source, tests, and configuration. Use `fix` to correct confirmed problems within the requested scope and rerun the affected reviews and checks. The final report separates passing tests from satisfied requirements and includes unresolved issues and verification limits.
 
+Before execution, the skill inventories the requested requirements, code paths, tests, and user flows. It completes each applicable stage before starting the next; partial results from a worker's item or budget limit feed the remaining work queue. It continues while actionable items remain and reports all five stages with coverage and evidence. Only an actual dependency block or a user-defined overall budget or stop request permits an incomplete final report. Passing automated checks alone does not complete the workflow.
+
 Verify the current implementation changes, or name specific files, commits, or a branch:
 
 ```text
