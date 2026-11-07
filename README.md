@@ -12,7 +12,7 @@ Reusable skills for coding agents.
 | [False Green Detector](skills/false-green-detector/SKILL.md) | Find tests that pass even when behavior violates the specification. |
 | [Session Handoff](skills/session-handoff/SKILL.md) | Transfer a task to a new Codex chat and separate Git worktree, then archive the original chat after verified intake. |
 | [Goal Setter](skills/goal-setter/SKILL.md) | Turn ambiguous multi-step work into a reviewed, evidence-backed Goal file. |
-| [UI Review](skills/ui-review/SKILL.md) | Find unnecessary UI text and useless buttons. |
+| [UI Simplify](skills/ui-simplify/SKILL.md) | Review a screen and fix unnecessary text, redundant buttons, and environment-specific UI by default. |
 
 ## 코드검증 (Code Verification)
 
@@ -155,18 +155,18 @@ Request only a handoff prompt:
 Use $session-handoff to write only a handoff prompt for continuing this task in another session.
 ```
 
-## UI Review
+## UI Simplify
 
 Install from this repository:
 
 ```text
-Use $skill-installer to install https://github.com/computerphilosopher/agent-skills/tree/main/skills/ui-review
+Use $skill-installer to install https://github.com/computerphilosopher/agent-skills/tree/main/skills/ui-simplify
 ```
 
-Use it to review a screen:
+Review and update a screen:
 
 ```text
-Use $ui-review to find unnecessary text and useless buttons in this screen.
+Use $ui-simplify on this screen.
 ```
 
 ## Goal Setter
@@ -280,7 +280,7 @@ skills/
 │           └── document-readability-original.md
 ├── session-handoff/
 │   └── SKILL.md
-└── ui-review/
+└── ui-simplify/
     ├── SKILL.md
     └── agents/
         └── openai.yaml
