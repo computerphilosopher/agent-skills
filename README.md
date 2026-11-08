@@ -5,6 +5,7 @@ Reusable skills for coding agents.
 | Skill | Purpose |
 | --- | --- |
 | [코드검증](skills/code-verification/SKILL.md) | Verify code changes against specifications, review implementation and tests, and run applicable browser and repository checks. |
+| [문서 길잡이](skills/document-walkthrough/SKILL.md) | Guide document reading, explain one step at a time, answer questions, and resume from the current reading position. |
 | [문장강화](skills/munjang-ganghwa/SKILL.md) | Revise documents through content pruning, structure review, and sentence refinement. |
 | [Document Thanos](skills/document-thanos/SKILL.md) | Delete unnecessary document content and consolidate redundant explanations while preserving needed information. |
 | [Document Structure Review](skills/document-structure-review/SKILL.md) | Improve document organization, explanation coverage, tables, terminology consistency, and procedural flow. |
@@ -38,6 +39,25 @@ Fix confirmed problems and verify again:
 ```text
 $code-verification fix path/to/code
 ```
+
+## 문서 길잡이 (Document Walkthrough)
+
+Document Walkthrough helps readers choose where to start, understand a document one step at a time, and continue after questions without losing their place. It connects explanations to source locations, distinguishes documented facts from inference, and checks the current document when resuming. Explanation is the default; reading guidance alone does not edit the source.
+
+Install from this repository:
+
+```text
+Use $skill-installer to install https://github.com/computerphilosopher/agent-skills/tree/main/skills/document-walkthrough
+```
+
+Choose a reading path or begin a guided explanation:
+
+```text
+$document-walkthrough path/to/document.md 어디부터 읽으면 좋을지 안내해줘.
+$document-walkthrough path/to/document.md 호출 예부터 한 단계씩 설명해줘.
+```
+
+Continue with questions such as “이 객체는 무슨 역할이야?”, “그다음 설명해줘”, or “어디까지 봤지?” in the same chat.
 
 ## 문장강화 (Munjang Ganghwa)
 
@@ -258,6 +278,10 @@ skills/
 │   └── agents/
 │       └── openai.yaml
 ├── document-structure-review/
+│   ├── SKILL.md
+│   └── agents/
+│       └── openai.yaml
+├── document-walkthrough/
 │   ├── SKILL.md
 │   └── agents/
 │       └── openai.yaml

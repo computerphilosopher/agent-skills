@@ -1,0 +1,3 @@
+interface:
+  display_name: "문서 길잡이"
+  short_description: "읽는 순서를 안내하고 질문에 답하며 문서의 다음 내용을 함께 읽습니다"
