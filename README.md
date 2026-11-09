@@ -66,6 +66,8 @@ Continue with questions such as “이 객체는 무슨 역할이야?”, “그
 
 Edits requested during a walkthrough go to a separate editing chat while reading continues. After the user authorizes the connection, messages in both directions, and automatic merges for Git documents, the guide reuses that chat for later requests. Before reporting completion or closing the session, the editing chat must apply Munjang Ganghwa in revision mode to the approved scope. For Git documents, it then verifies the final document, commits the changes, and merges them from its separate worktree and branch into the original branch without repeated confirmation. It reports completion after checking the merge and includes the Munjang Ganghwa results; the guide checks the updated source without advancing the reader's place. Users can still request edits in the current chat.
 
+Before creating an editing chat, use the user's chosen model and reasoning effort. If no choice is recorded, suggest GPT-6.1 Terra / Extra high (`model: "gpt-6.1-terra"`, `thinking: "xhigh"`) and wait for confirmation. Do not ask again once the user has chosen, silently substitute an unsupported combination, or change either chat's settings on follow-up messages without a user request.
+
 ## 문장강화 (Munjang Ganghwa)
 
 문장강화 is a comprehensive document revision workflow, named as an homage to Yi Tae-jun’s *Munjang Ganghwa*. It applies Document Thanos, Document Structure Review, and Sentence Expression Review in that order. Revision is the default; each stage edits the previous stage’s revised document. Use `review` or explicitly request a review without edits to receive findings only. The final report summarizes what changed and why. Questions requiring a new policy or design decision remain for the user.
