@@ -59,6 +59,8 @@ $document-walkthrough path/to/document.md 호출 예부터 한 단계씩 설명�
 
 Continue with questions such as “이 객체는 무슨 역할이야?”, “그다음 설명해줘”, or “어디까지 봤지?” in the same chat.
 
+Edits requested during a walkthrough go to a separate editing chat while reading continues. After the user authorizes the connection, messages in both directions, and automatic merges for Git documents, the guide reuses that chat for later requests. The editing chat works in a separate Git worktree and branch, verifies and commits the requested changes, and merges them into the original branch without repeated confirmation. It reports completion after checking the merge; the guide checks the updated source without advancing the reader's place. Users can still request edits in the current chat.
+
 ## 문장강화 (Munjang Ganghwa)
 
 문장강화 is a comprehensive document revision workflow, named as an homage to Yi Tae-jun’s *Munjang Ganghwa*. It applies Document Thanos, Document Structure Review, and Sentence Expression Review in that order. Revision is the default; each stage edits the previous stage’s revised document. Use `review` or explicitly request a review without edits to receive findings only. The final report summarizes what changed and why. Questions requiring a new policy or design decision remain for the user.
