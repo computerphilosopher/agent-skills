@@ -44,10 +44,15 @@ $code-verification fix path/to/code
 
 Document Walkthrough helps readers choose where to start, understand a document one step at a time, and continue after questions without losing their place. It connects explanations to source locations, distinguishes documented facts from inference, and checks the current document when resuming. Explanation is the default; reading guidance alone does not edit the source.
 
-Install from this repository:
+Install the walkthrough and its required editing skills together:
 
 ```text
-Use $skill-installer to install https://github.com/computerphilosopher/agent-skills/tree/main/skills/document-walkthrough
+Use $skill-installer to install these paths from computerphilosopher/agent-skills:
+- skills/document-walkthrough
+- skills/munjang-ganghwa
+- skills/document-thanos
+- skills/document-structure-review
+- skills/sentence-expression-review
 ```
 
 Choose a reading path or begin a guided explanation:
@@ -59,7 +64,7 @@ $document-walkthrough path/to/document.md 호출 예부터 한 단계씩 설명�
 
 Continue with questions such as “이 객체는 무슨 역할이야?”, “그다음 설명해줘”, or “어디까지 봤지?” in the same chat.
 
-Edits requested during a walkthrough go to a separate editing chat while reading continues. After the user authorizes the connection, messages in both directions, and automatic merges for Git documents, the guide reuses that chat for later requests. The editing chat works in a separate Git worktree and branch, verifies and commits the requested changes, and merges them into the original branch without repeated confirmation. It reports completion after checking the merge; the guide checks the updated source without advancing the reader's place. Users can still request edits in the current chat.
+Edits requested during a walkthrough go to a separate editing chat while reading continues. After the user authorizes the connection, messages in both directions, and automatic merges for Git documents, the guide reuses that chat for later requests. Before reporting completion or closing the session, the editing chat must apply Munjang Ganghwa in revision mode to the approved scope. For Git documents, it then verifies the final document, commits the changes, and merges them from its separate worktree and branch into the original branch without repeated confirmation. It reports completion after checking the merge and includes the Munjang Ganghwa results; the guide checks the updated source without advancing the reader's place. Users can still request edits in the current chat.
 
 ## 문장강화 (Munjang Ganghwa)
 
