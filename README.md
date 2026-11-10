@@ -70,7 +70,7 @@ Edits requested during a walkthrough go to a separate editing chat for each docu
 
 Before reporting completion or closing a session, the editing chat must apply Munjang Ganghwa in revision mode to the approved scope and verify the final document. For Git documents, it commits the changes and merges them into the original branch without repeated confirmation; other documents are saved to their source. It reports the document, request, merge or save result, and Munjang Ganghwa results. The guide checks the updated source without switching documents or advancing the reader's place. Users can still request edits in the current chat.
 
-Before creating an editing chat, use the user's chosen model and reasoning effort. If no choice is recorded, suggest GPT-6 Luna / Max (`model: "gpt-6-luna"`, `thinking: "max"`) and wait for confirmation. Do not ask again once the user has chosen, silently substitute an unsupported combination, or change either chat's settings on follow-up messages without a user request.
+Before creating an editing chat, use the user's chosen model and reasoning effort. If no choice is recorded, suggest GPT-6 Luna / xhigh (`model: "gpt-6-luna"`, `thinking: "xhigh"`) and wait for confirmation. Do not ask again once the user has chosen, silently substitute an unsupported combination, or change either chat's settings on follow-up messages without a user request.
 
 ## 문장강화 (Munjang Ganghwa)
 
