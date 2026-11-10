@@ -44,6 +44,8 @@ $code-verification fix path/to/code
 
 Document Walkthrough helps readers choose where to start, understand a document one step at a time, and continue after questions without losing their place. It connects explanations to source locations, distinguishes documented facts from inference, and checks the current document when resuming. Explanation is the default; reading guidance alone does not edit the source.
 
+For a feature specification, the guide coordinates document reading and review, then checks the current specification and code for implementation readiness. It asks only for decisions that cannot be resolved from existing requirements, code, conventions, or reasonable defaults and actually block implementation. When ready, it shares the scope, important assumptions, and validation criteria; if the user has requested implementation in a separate chat, it dispatches that work without repeated confirmation. The implementation chat follows the same decision rules and reports its changes and verification. Code integration follows its own authorization and repository instructions.
+
 Install the walkthrough and its required editing skills together:
 
 ```text
