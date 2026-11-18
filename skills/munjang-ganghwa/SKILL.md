@@ -23,11 +23,11 @@ description: Use when a user asks for a comprehensive document review or revisio
 
 | 순서 | 스킬 | 담당 |
 | --- | --- | --- |
-| 1 | [document-thanos](../document-thanos/SKILL.md) | 불필요한 내용 삭제와 중복 통합 |
-| 2 | [document-structure-review](../document-structure-review/SKILL.md) | 설명의 충실도, 장절 위계, 정보 배치, 표와 절차 연결 |
-| 3 | [sentence-expression-review](../sentence-expression-review/SKILL.md) | 문장의 의미 전달과 표현 |
+| 1 | [document-thanos](../document-thanos/SKILL.md) | 불필요한 내용 정리 |
+| 2 | [document-structure-review](../document-structure-review/SKILL.md) | 문서 구성과 설명 검토 |
+| 3 | [sentence-expression-review](../sentence-expression-review/SKILL.md) | 문장 표현과 가독성 검토 |
 
-수정 모드에서는 각 단계가 직전 단계의 수정본을 다시 읽고 편집을 이어간다. 근거가 충분한 부분은 수정하고, 새 정책이나 설계 결정이 필요한 부분은 질문으로 남긴다. 마지막 수정본의 의미·조건·참조를 확인하고 대상 저장소가 요구하는 관련 검사를 실행한다.
+수정 모드에서는 각 단계가 직전 단계의 수정본을 읽고 편집을 이어간다. 마지막 수정본은 실행한 스킬의 기준으로 다시 확인한다.
 
 리뷰 모드에서는 각 단계에 검토만 요청하고 파일을 유지한다.
 
